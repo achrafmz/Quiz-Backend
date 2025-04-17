@@ -20,21 +20,30 @@ public class Quiz {
 
     @OneToMany(mappedBy = "quiz", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Question> questions;
+    @OneToMany(mappedBy = "quiz", cascade = CascadeType.ALL)
+    private List<QuizResult> results;
 
     @ManyToOne
     @JoinColumn(name = "categorie_id")
     private Categorie categorie;
     // Constructeur
-    public Quiz() {}
 
-    public Quiz(String quiz_name, String description, Difficulty difficulty) {
+
+    public Quiz(Long quiz_id, String quiz_name, String description, Difficulty difficulty, List<Question> questions, List<QuizResult> results, Categorie categorie) {
+        this.quiz_id = quiz_id;
         this.quiz_name = quiz_name;
         this.description = description;
         this.difficulty = difficulty;
+        this.questions = questions;
+        this.results = results;
+        this.categorie = categorie;
     }
 
-    // Getters et setters
+    public Quiz() {
 
+    }
+
+    //getters et setters
     public Long getQuiz_id() {
         return quiz_id;
     }
@@ -73,5 +82,21 @@ public class Quiz {
 
     public void setQuestions(List<Question> questions) {
         this.questions = questions;
+    }
+
+    public List<QuizResult> getResults() {
+        return results;
+    }
+
+    public void setResults(List<QuizResult> results) {
+        this.results = results;
+    }
+
+    public Categorie getCategorie() {
+        return categorie;
+    }
+
+    public void setCategorie(Categorie categorie) {
+        this.categorie = categorie;
     }
 }
