@@ -1,11 +1,11 @@
 package com.quiz.quiz.models;
 
 import jakarta.persistence.*;
-
-
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.util.List;
 
+@JsonIgnoreProperties(ignoreUnknown = true)  // Ignore unknown properties
 @Entity
 public class Quiz {
     @Id
@@ -20,30 +20,25 @@ public class Quiz {
 
     @OneToMany(mappedBy = "quiz", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Question> questions;
+
     @OneToMany(mappedBy = "quiz", cascade = CascadeType.ALL)
     private List<QuizResult> results;
 
     @ManyToOne
-    @JoinColumn(name = "categorie_id")
+    @JoinColumn(name = "categorie_id", nullable = false)  // Ensure category is not null
     private Categorie categorie;
-    // Constructeur
 
+    // Constructeurs
+    public Quiz() {}
 
-    public Quiz(Long quiz_id, String quiz_name, String description, Difficulty difficulty, List<Question> questions, List<QuizResult> results, Categorie categorie) {
-        this.quiz_id = quiz_id;
+    public Quiz(String quiz_name, String description, Difficulty difficulty, Categorie categorie) {
         this.quiz_name = quiz_name;
         this.description = description;
         this.difficulty = difficulty;
-        this.questions = questions;
-        this.results = results;
         this.categorie = categorie;
     }
 
-    public Quiz() {
-
-    }
-
-    //getters et setters
+    // Getters et setters
     public Long getQuiz_id() {
         return quiz_id;
     }

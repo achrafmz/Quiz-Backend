@@ -3,17 +3,23 @@ package com.quiz.quiz.controllers;
 import com.quiz.quiz.models.Quiz;
 import com.quiz.quiz.services.QuizService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
-@RequestMapping("/quiz")  // Préfixe commun
+@RequestMapping("/quiz")
 public class QuizController {
 
     @Autowired
     private QuizService quizService;
+
+    private static final Logger logger = LoggerFactory.getLogger(QuizController.class);
 
     //  Get All
     @GetMapping
@@ -31,9 +37,18 @@ public class QuizController {
 
     //  Create
     @PostMapping
-    public Quiz createQuiz(@RequestBody Quiz quiz) {
-        return quizService.createQuiz(quiz);
+    public ResponseEntity<Quiz> createQuiz(@RequestBody Quiz quiz) {
+        try {
+            if (quiz.getCategorie() == null || quiz.getCategorie().getId() == null) {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+            }
+            Quiz createdQuiz = quizService.createQuiz(quiz);
+            return ResponseEntity.status(HttpStatus.CREATED).body(createdQuiz);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
     }
+
 
     //  Update
     @PutMapping("update/{id}")

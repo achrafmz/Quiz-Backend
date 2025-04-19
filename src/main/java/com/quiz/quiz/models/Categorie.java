@@ -1,5 +1,6 @@
 package com.quiz.quiz.models;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.persistence.*;
 import java.util.List;
 
@@ -15,6 +16,8 @@ public class Categorie {
     private String image;
 
     @OneToMany(mappedBy = "categorie", cascade = CascadeType.ALL)
+
+    @JsonInclude(JsonInclude.Include.NON_NULL)  // Si tu veux inclure uniquement les valeurs non nulles
     private List<Quiz> quizzes;
 
     // Getters & Setters
