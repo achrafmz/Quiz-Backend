@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.util.List;
+import java.util.Optional;
 
 @JsonIgnoreProperties(ignoreUnknown = true)  // Ignore unknown properties
 @Entity
@@ -25,20 +26,22 @@ public class Quiz {
     private List<QuizResult> results;
 
     @ManyToOne
-    @JoinColumn(name = "categorie_id", nullable = false)  // Ensure category is not null
+    @JoinColumn(name = "categorie_id")
     private Categorie categorie;
 
     // Constructeurs
     public Quiz() {}
 
-    public Quiz(String quiz_name, String description, Difficulty difficulty, Categorie categorie) {
+    public Quiz(Long quiz_id, String quiz_name, String description, Difficulty difficulty, List<Question> questions, List<QuizResult> results, Categorie categorie) {
+        this.quiz_id = quiz_id;
         this.quiz_name = quiz_name;
         this.description = description;
         this.difficulty = difficulty;
+        this.questions = questions;
+        this.results = results;
         this.categorie = categorie;
     }
 
-    // Getters et setters
     public Long getQuiz_id() {
         return quiz_id;
     }

@@ -14,42 +14,33 @@ public class CategorieService {
     @Autowired
     private CategorieRepository categorieRepository;
 
-    // Récupérer toutes les catégories
-    public List<Categorie> getAllCategories() {
-        return categorieRepository.findAll();
-    }
-
-    // Récupérer une catégorie par son ID
-    public Optional<Categorie> getCategorieById(Long id) {
-        return categorieRepository.findById(id);
-    }
-
-    // Créer une nouvelle catégorie
+    // Create a new category
     public Categorie createCategorie(Categorie categorie) {
         return categorieRepository.save(categorie);
     }
 
-    // Mettre à jour une catégorie existante
-    public Optional<Categorie> updateCategorie(Long id, Categorie categorieDetails) {
-        Optional<Categorie> existingCategorie = categorieRepository.findById(id);
-        if (existingCategorie.isPresent()) {
-            Categorie categorie = existingCategorie.get();
-            categorie.setNom(categorieDetails.getNom());
-            categorie.setDescription(categorieDetails.getDescription());
-            categorie.setImage(categorieDetails.getImage());
-            categorie.setQuizzes(categorieDetails.getQuizzes());
-            return Optional.of(categorieRepository.save(categorie));
-        }
-        return Optional.empty();
+    // Get all categories
+    public List<Categorie> getAllCategories() {
+        return categorieRepository.findAll();
     }
 
-    // Supprimer une catégorie
-    public boolean deleteCategorie(Long id) {
-        Optional<Categorie> categorie = categorieRepository.findById(id);
-        if (categorie.isPresent()) {
-            categorieRepository.delete(categorie.get());
-            return true;
-        }
-        return false;
+    // Get a category by ID
+    public Optional<Categorie> getCategorieById(Long id) {
+        return categorieRepository.findById(id);
+    }
+
+    // Update an existing category
+    public Categorie updateCategorie(Long id, Categorie updatedCategorie) {
+        return categorieRepository.findById(id).map(categorie -> {
+            categorie.setNom(updatedCategorie.getNom());
+            categorie.setDescription(updatedCategorie.getDescription());
+            categorie.setImage(updatedCategorie.getImage());
+            return categorieRepository.save(categorie);
+        }).orElseThrow(() -> new RuntimeException("Category not found with id " + id));
+    }
+
+    // Delete a category by ID
+    public void deleteCategorie(Long id) {
+        categorieRepository.deleteById(id);
     }
 }
