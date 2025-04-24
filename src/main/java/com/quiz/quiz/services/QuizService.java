@@ -6,44 +6,34 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class QuizService {
-
     @Autowired
     private QuizRepository quizRepository;
 
-    // Create a new quiz
-    public Quiz createQuiz(Quiz quiz) {
-        return quizRepository.save(quiz);
-    }
-
-    // Get all quizzes
-    public List<Quiz> getAllQuizzes() {
+    public List<Quiz> findAll() {
         return quizRepository.findAll();
     }
 
-    // Get a quiz by ID
-    public Optional<Quiz> getQuizById(Long id) {
-        return quizRepository.findById(id);
+    public Quiz findById(Long id) {
+        return quizRepository.findById(id).orElseThrow(() -> new RuntimeException("Quiz introuvable"));
     }
 
-    // Update an existing quiz
-    public Quiz updateQuiz(Long id, Quiz updatedQuiz) {
-        return quizRepository.findById(id).map(quiz -> {
-            quiz.setQuiz_name(updatedQuiz.getQuiz_name());
-            quiz.setDescription(updatedQuiz.getDescription());
-            quiz.setDifficulty(updatedQuiz.getDifficulty());
-            quiz.setQuestions(updatedQuiz.getQuestions());
-            quiz.setResults(updatedQuiz.getResults());
-            quiz.setCategorie(updatedQuiz.getCategorie());
-            return quizRepository.save(quiz);
-        }).orElseThrow(() -> new RuntimeException("Quiz not found with id " + id));
+    public Quiz save(Quiz quiz) {
+        return quizRepository.save(quiz);
     }
 
-    // Delete a quiz by ID
-    public void deleteQuiz(Long id) {
+    public Quiz update(Long id, Quiz quizDetails) {
+        Quiz quiz = findById(id);
+        quiz.setNom(quizDetails.getNom());
+        quiz.setDescription(quizDetails.getDescription());
+        quiz.setDifficulte(quizDetails.getDifficulte());
+        quiz.setCategorie(quizDetails.getCategorie());
+        return quizRepository.save(quiz);
+    }
+
+    public void delete(Long id) {
         quizRepository.deleteById(id);
     }
 }
