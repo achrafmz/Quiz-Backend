@@ -77,6 +77,6 @@ public class QuizController {
             return ResponseEntity.notFound().build();  // Quiz non trouvé
         }
     }
-    
+
 
 }

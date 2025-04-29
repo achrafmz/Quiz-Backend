@@ -22,16 +22,10 @@ public class Question {
     private Quiz quiz; // Lien avec le quiz auquel cette question appartient
 
 
-    @OneToMany(mappedBy = "question", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Reponse> reponses = new ArrayList<>();
 
-    public List<Reponse> getReponses() {
-        return reponses;
-    }
 
-    public void setReponses(List<Reponse> reponses) {
-        this.reponses = reponses;
-    }
+      
+
     // Getters et Setters
 
     public Long getId() {
