@@ -21,10 +21,21 @@ public class Question {
     @JoinColumn(name = "quiz_id")
     private Quiz quiz; // Lien avec le quiz auquel cette question appartient
 
+// Dans la classe Question
+
+    @OneToMany(mappedBy = "question", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Option> options = new ArrayList<>();
 
 
+    public void addOption(Option option) {
+        options.add(option);
+        option.setQuestion(this);
+    }
 
-      
+    public void removeOption(Option option) {
+        options.remove(option);
+        option.setQuestion(null);
+    }
 
     // Getters et Setters
 
