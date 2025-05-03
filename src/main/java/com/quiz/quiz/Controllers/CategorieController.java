@@ -30,7 +30,6 @@ public class CategorieController {
         existing.setNom(categorie.getNom());
         return categorieService.save(existing);
     }
-
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id) {
         categorieService.delete(id);
