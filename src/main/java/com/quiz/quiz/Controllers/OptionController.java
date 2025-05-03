@@ -12,6 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/options")
+@CrossOrigin("*")
 public class OptionController {
 
     @Autowired
@@ -20,7 +21,6 @@ public class OptionController {
     @Autowired
     private QuestionService questionService;
 
-    // Créer plusieurs options à la fois
     @PostMapping("/question/{questionId}")
     public ResponseEntity<List<Option>> createOptions(
             @PathVariable Long questionId,
@@ -37,14 +37,12 @@ public class OptionController {
         return ResponseEntity.ok(savedOptions);
     }
 
-    // Supprimer une option par ID
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteOption(@PathVariable Long id) {
         optionService.deleteOptionById(id);
         return ResponseEntity.noContent().build();
     }
 
-    // Récupérer toutes les options d'une question
     @GetMapping("/question/{questionId}")
     public ResponseEntity<List<Option>> getOptionsByQuestion(@PathVariable Long questionId) {
         List<Option> options = optionService.getOptionsByQuestionId(questionId);
