@@ -68,6 +68,8 @@ public class Quiz {
     public void setPhoto(byte[] photo) {
         this.photo = photo;
     }
+
+
 //    @OneToMany(mappedBy = "quiz", cascade = CascadeType.ALL)
 //    private List<Question> questions;
 //
