@@ -9,6 +9,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/categories")
 @CrossOrigin("*")
+
 public class CategorieController {
     @Autowired
     private CategorieService categorieService;
@@ -29,6 +30,7 @@ public class CategorieController {
         existing.setNom(categorie.getNom());
         return categorieService.save(existing);
     }
+
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id) {
         categorieService.delete(id);

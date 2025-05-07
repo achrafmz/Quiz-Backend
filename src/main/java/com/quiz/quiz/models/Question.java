@@ -10,7 +10,6 @@ public class Question {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String enonce;
     private String type;
     private int points;

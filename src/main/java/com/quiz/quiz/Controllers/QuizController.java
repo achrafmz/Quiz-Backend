@@ -49,7 +49,7 @@ public class QuizController {
         }
     }
 
-    // Endpoint pour mettre à jour un quiz
+    // End point pour mettre à jour un quiz
     @PutMapping("/{id}")
     public ResponseEntity<Quiz> updateQuiz(@PathVariable Long id,
                                            @RequestParam("nom") String nom,
