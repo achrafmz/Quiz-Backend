@@ -11,8 +11,7 @@ import java.util.List;
 public class CategorieService {
     @Autowired
     private CategorieRepository categorieRepository;
-
-
+    
     public List<Categorie> findAll() {
         return categorieRepository.findAll();
     }
@@ -28,4 +27,5 @@ public class CategorieService {
     public void delete(Long id) {
         categorieRepository.deleteById(id);
     }
+
 }

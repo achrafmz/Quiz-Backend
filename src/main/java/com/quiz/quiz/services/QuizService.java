@@ -79,7 +79,6 @@ public class QuizService {
         }
     }
 
-
     // Méthode pour supprimer un quiz
     public void deleteQuiz(Long id) {
         quizRepository.deleteById(id);
@@ -91,4 +90,5 @@ public class QuizService {
 //        }
 //        return new ArrayList<>();
 //    }
+
 }

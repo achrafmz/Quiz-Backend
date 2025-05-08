@@ -35,4 +35,5 @@ public class CategorieController {
     public void delete(@PathVariable Long id) {
         categorieService.delete(id);
     }
+
 }

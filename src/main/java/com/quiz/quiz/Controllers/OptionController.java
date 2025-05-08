@@ -47,4 +47,5 @@ public class OptionController {
         List<Option> options = optionService.getOptionsByQuestionId(questionId);
         return ResponseEntity.ok(options);
     }
+
 }

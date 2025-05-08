@@ -8,11 +8,9 @@ import jakarta.persistence.Id;
 @Entity
 public class Categorie {
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String nom;
 
     // Getters & Setters
