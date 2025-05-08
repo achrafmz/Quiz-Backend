@@ -8,6 +8,7 @@ import jakarta.persistence.Id;
 @Entity
 public class Categorie {
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -20,4 +21,5 @@ public class Categorie {
 
     public String getNom() { return nom; }
     public void setNom(String nom) { this.nom = nom; }
+
 }

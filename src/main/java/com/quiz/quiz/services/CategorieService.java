@@ -12,6 +12,7 @@ public class CategorieService {
     @Autowired
     private CategorieRepository categorieRepository;
 
+
     public List<Categorie> findAll() {
         return categorieRepository.findAll();
     }

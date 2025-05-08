@@ -17,8 +17,11 @@ public class Quiz {
     @ManyToOne
     @JoinColumn(name = "categorie_id")
     private Categorie categorie;
+
+
     @Lob
     private byte[] photo;
+
     // Getters & Setters
 
     public Long getId() {
