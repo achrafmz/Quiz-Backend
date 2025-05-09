@@ -18,7 +18,6 @@ public class Quiz {
     @JoinColumn(name = "categorie_id")
     private Categorie categorie;
 
-
     @Lob
     private byte[] photo;
 
@@ -73,7 +72,6 @@ public class Quiz {
     }
 
 
-
 //    @OneToMany(mappedBy = "quiz", cascade = CascadeType.ALL)
 //    private List<Question> questions;
 //
@@ -85,4 +83,6 @@ public class Quiz {
 //    public void setQuestions(List<Question> questions) {
 //        this.questions = questions;
 //    }
+
+
 }

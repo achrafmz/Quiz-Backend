@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
-
 @RestController
 @RequestMapping("/api/questions")
 @CrossOrigin("*")
@@ -44,4 +43,5 @@ public class QuestionController {
         Question updated = questionService.updateQuestion(id, question);
         return ResponseEntity.ok(updated);
     }
+
 }

@@ -19,6 +19,7 @@ public class CategorieController {
         return categorieService.findAll();
     }
 
+
     @PostMapping
     public Categorie create(@RequestBody Categorie categorie) {
         return categorieService.save(categorie);
@@ -35,5 +36,4 @@ public class CategorieController {
     public void delete(@PathVariable Long id) {
         categorieService.delete(id);
     }
-
 }

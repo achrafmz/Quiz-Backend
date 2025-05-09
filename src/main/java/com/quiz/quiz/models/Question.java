@@ -4,8 +4,10 @@ import jakarta.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+
 @Entity
 public class Question {
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,6 +33,7 @@ public class Question {
         options.remove(option);
         option.setQuestion(null);
     }
+
 
     // Getters & Setters
     public Long getId() { return id; }
@@ -59,5 +62,4 @@ public class Question {
             options.forEach(option -> option.setQuestion(this));
         }
     }
-
 }

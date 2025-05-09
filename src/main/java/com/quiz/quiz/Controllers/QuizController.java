@@ -12,10 +12,10 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
-
 @RestController
 @RequestMapping("/api/quizzes")
 @CrossOrigin("*")
+
 
 public class QuizController {
 
@@ -79,5 +79,4 @@ public class QuizController {
             return ResponseEntity.notFound().build();  // Quiz non trouvé
         }
     }
-
 }
